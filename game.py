@@ -9,7 +9,7 @@ FPS = 60
 
 pygame.init()
 
-win = pygame.display.set_mode((640,480)) 
+win = pygame.display.set_mode((1239,798)) 
 pygame.display.set_caption("First Game")
 
 #whatever this is
@@ -34,6 +34,7 @@ onMenu = True
 #Map
 
 ice_map = pygame.image.load(r"assets\images\Frozen Ice Map.png")
+ice_map = pygame.transform.scale(ice_map, (1239,798))
 win.blit(ZebraB, (0, 0))
 win.blit(ice_map, (0,0)) 
 run = True
@@ -57,6 +58,7 @@ while run:
         yco = cursorPos[1]
         #This is subtracting the coordinates by half of both width and height to get the centre
         win.blit(bloonType, (xco-width/2, yco-height/2))
+        if pygame.mouse.get_pressed():            
     pygame.display.update()
 
 clock.tick(FPS)
