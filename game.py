@@ -12,22 +12,6 @@ pygame.init()
 win = pygame.display.set_mode((640,480)) 
 pygame.display.set_caption("First Game")
 
-#character info
-x = 50
-y = 50
-width = 40
-height = 60
-vel = 5
-run = True
-sprite =pygame.sprite.Sprite()
-tower = sprite.image = pygame.image.load(r"assets\images\Zebra.png")
-sprite.image = tower
-sprite.rect = sprite.image.get_rect()
-
-sprite.rect.x = 10
-sprite.rect.y = 10
-sprite.add(sprite.rect)
-
 #whatever this is
 clock = pygame.time.Clock()
 
@@ -48,24 +32,31 @@ Battle_Music2 = pygame.mixer.music.load(r'assets\music\Jingle_Bells_-_Merry_Heav
 onMenu = True 
 
 #Map
+
 ice_map = pygame.image.load(r"assets\images\Frozen Ice Map.png")
-
-# win.blit(ice_map, (0, 0))
-
+win.blit(ZebraB, (0, 0))
+win.blit(ice_map, (0,0)) 
+run = True
 
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit() 
             run = False 
-    win.blit(ZebraB, (0, 0))
-    while onMenu: 
-        mixer.music.play(Main_Menu_Music) 
+    # while onMenu: 
+    #     pygame.mixer.music.play(Main_Menu_Music) 
     # win.draw()
+    win.blit(ice_map, (0,0)) 
+    #bloonType is the bloon that is being shown
+    bloonType = ZebraB
+    height = bloonType.get_height()
+    width = bloonType.get_width()
     if pygame.mouse.get_pressed():
         cursorPos = pygame.mouse.get_pos()
-        sprite.rect.x = cursorPos[0]
-        sprite.rect.y = cursorPos[1]
+        xco = cursorPos[0]
+        yco = cursorPos[1]
+        #This is subtracting the coordinates by half of both width and height to get the centre
+        win.blit(bloonType, (xco-width/2, yco-height/2))
     pygame.display.update()
-    clock.tick(FPS) 
 
+clock.tick(FPS)
