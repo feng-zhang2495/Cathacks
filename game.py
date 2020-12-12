@@ -19,6 +19,14 @@ width = 40
 height = 60
 vel = 5
 run = True
+sprite =pygame.sprite.Sprite()
+tower = sprite.image = pygame.image.load(r"assets\images\Zebra.png")
+sprite.image = tower
+sprite.rect = sprite.image.get_rect()
+
+sprite.rect.x = 10
+sprite.rect.y = 10
+sprite.add(sprite.rect)
 
 #whatever this is
 clock = pygame.time.Clock()
@@ -51,6 +59,13 @@ while run:
             sys.exit() 
             run = False 
     win.blit(ZebraB, (0, 0))
+    while onMenu: 
+        mixer.music.play(Main_Menu_Music) 
+    # win.draw()
+    if pygame.mouse.get_pressed():
+        cursorPos = pygame.mouse.get_pos()
+        sprite.rect.x = cursorPos[0]
+        sprite.rect.y = cursorPos[1]
     pygame.display.update()
     clock.tick(FPS) 
 
